@@ -88,6 +88,9 @@ function attachEventListeners(listItem) {
                 allCompletedTasks.splice(index, 1);
             }
         }
+        const li_items = document.getElementsByClassName('li-items').length;
+        const total_items = document.querySelector('#total-items');
+        total_items.textContent = `${li_items - allCompletedTasks.length} items left`;
     });
 
     removeTask.addEventListener('click', function() {if(document.getElementsByClassName('li-items').length === 0) {
@@ -219,20 +222,9 @@ function displayAllTasks() {
     displayResult.innerHTML = '';
     displayResult.style.display = 'none';
     ulList.style.display = 'block';
-    
-    document.getElementById('tasks-active').classList.remove('active');
-    document.getElementById('tasks-completed').classList.remove('active');
-}
-
-function displayAllTasks() {
-    const ulList = document.getElementById('ul-list');
-    const displayResult = document.getElementById('display-result');
-
-    displayResult.innerHTML = '';
-    displayResult.style.display = 'none';
-    ulList.style.display = 'block';
 
     const allListItems = document.getElementsByClassName('li-items');
+
     for (let index = 0; index < allListItems.length; index++) {
         const taskNumber = allListItems[index].getAttribute('data-taskNumber');
         const checkbox = allListItems[index].querySelector('input[type="checkbox"]');
