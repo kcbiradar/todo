@@ -21,7 +21,7 @@ function addTask() {
                 createListItem.appendChild(checkBox);
                 createListItem.appendChild(span);
                 const createInput = document.createElement('input');
-                createInput.setAttribute('class', 'hidden-input flex');
+                createInput.setAttribute('class', 'hidden-input w-90');
                 createInput.style.display = 'none';
                 createListItem.appendChild(createInput);
                 const crossSymbol = document.createElement('span');
@@ -220,6 +220,36 @@ function displayAllTasks() {
     document.getElementById('tasks-active').classList.remove('active');
     document.getElementById('tasks-completed').classList.remove('active');
 }
+
+function displayAllTasks() {
+    const ulList = document.getElementById('ul-list');
+    const displayResult = document.getElementById('display-result');
+
+    displayResult.innerHTML = '';
+    displayResult.style.display = 'none';
+    ulList.style.display = 'block';
+
+    const allListItems = document.getElementsByClassName('li-items');
+    for (let index = 0; index < allListItems.length; index++) {
+        const taskNumber = allListItems[index].getAttribute('data-taskNumber');
+        const checkbox = allListItems[index].querySelector('input[type="checkbox"]');
+        const taskInput = allListItems[index].querySelector('input[type="text"]');
+        if (allCompletedTasks.includes(taskNumber)) {
+            checkbox.checked = true;
+            taskInput.style.textDecoration = 'line-through';
+            taskInput.style.color = 'gray';
+        } else {
+            checkbox.checked = false;
+            taskInput.style.textDecoration = 'none';
+            taskInput.style.color = 'black';
+        }
+    }
+    
+    document.getElementById('tasks-active').classList.remove('active');
+    document.getElementById('tasks-completed').classList.remove('active');
+}
+
+
 
 function eraseCompletedTasks() {
     const allListItems = document.getElementsByClassName('li-items');
