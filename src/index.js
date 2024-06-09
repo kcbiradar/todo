@@ -43,6 +43,9 @@ function attachEventListeners(listItem) {
     const removeTask = listItem.querySelector('.delete');
 
     if(document.getElementsByClassName('li-items').length > 0) {
+        const li_items = document.getElementsByClassName('li-items').length;
+        const total_items = document.querySelector('#total-items');
+        total_items.textContent = `${li_items - allCompletedTasks.length} items left`;
         document.querySelector('#footer').style.display = 'unset';
     }
 
@@ -127,7 +130,7 @@ function getAllActiveTasks() {
     const displayResult = document.getElementById('display-result');
     const ulList = document.getElementById('ul-list');
 
-    displayResult.innerHTML = ''; // Clear previous results
+    displayResult.innerHTML = '';
     ulList.style.display = 'none';
     displayResult.style.display = 'unset';
 
